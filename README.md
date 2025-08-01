@@ -1,5 +1,9 @@
 # Goal Modeling Language (GML) – v1.0.0
 
+![Version](https://img.shields.io/badge/version-v1.0.0-blue)
+![Governed by The Covenant Trust](https://img.shields.io/badge/governed_by-The%20Covenant%20Trust-blueviolet)
+![Public Logic Infrastructure](https://img.shields.io/badge/type-Public%20Logic%20Infrastructure-brightgreen)
+
 > 🕊️ **Official Public Release — GML v1.0.0 (Covenant Public Edition)**  
 > This repository defines the canonical schema and stewardship framework for the **Goal Modeling Language (GML)** — a declarative execution grammar for transparent, governed, and auditable logic.  
 > Maintained by **The Covenant Trust** as public infrastructure for trust-based automation.
