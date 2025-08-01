@@ -1,6 +1,6 @@
 # Goal Modeling Language (GML) – v1.0.0
 
-> 🕊️ **Official Public Release — GML v1.0.0 (Covenant Edition)**  
+> 🕊️ **Official Public Release — GML v1.0.0 (Covenant Public Edition)**  
 > This repository defines the canonical schema and stewardship framework for the **Goal Modeling Language (GML)** — a declarative execution grammar for transparent, governed, and auditable logic.  
 > Maintained by **The Covenant Trust** as public infrastructure for trust-based automation.
 
