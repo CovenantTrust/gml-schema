@@ -1,0 +1,5 @@
+File: gml-schema-v1.0.0.json  
+SHA256: 7f94adbbd52f4d9bd1b26a00e9a38debbdb2d6f4fe8e0cd2fd12cf374e189b2c  
+Date: 2025-08-01  
+Declared by: The Covenant Trust  
+Purpose: Traceable integrity marker for GML schema v1.0.0

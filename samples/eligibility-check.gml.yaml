@@ -1,0 +1,50 @@
+id: basic-eligibility-v1
+version: 1.0.0
+jurisdiction: UK
+owner: Covenant Trust
+description: Basic eligibility check for public benefit access
+inputs:
+  - name: age
+    type: number
+    required: true
+    question: "How old are you?"
+  - name: resident
+    type: boolean
+    required: true
+    question: "Are you a legal resident of the UK?"
+logic:
+  - if:
+      age: { ">=": 18 }
+      resident: true
+    then: eligible
+    rationale: "Adults who are UK residents qualify."
+  - if:
+      age: { "<": 18 }
+      resident: true
+    then: ineligible
+    rationale: "Minors are not eligible regardless of residency."
+  - if:
+      resident: false
+    then: ineligible
+    rationale: "Non-residents are excluded."
+outputs:
+  eligible:
+    label: Eligible
+    description: Meets criteria for access
+  ineligible:
+    label: Ineligible
+    description: Does not meet access requirements
+rationale:
+  type: rule-linked
+  requires_justification: true
+  escalate_on_ambiguity: false
+trace:
+  signing_required: true
+  log_output: true
+  log_rationale: true
+  hashing_strategy: sha256
+meta:
+  domain: public-benefits
+  tags: [eligibility, uk, adult]
+  licensing: public
+  status: approved

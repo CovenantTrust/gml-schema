@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Governed Model Logic (GML)",
+  "type": "object",
+  "required": ["id", "version", "jurisdiction", "logic", "outputs", "rationale"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the logic model"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version identifier (semantic or timestamped)"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "Legal or operational jurisdiction (e.g., 'UK', 'UNHCR', 'CA-BC')"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Owning entity (tenant, trust, or public authority)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable summary of what the logic does"
+    },
+    "inputs": {
+      "type": "array",
+      "description": "Input fields required to evaluate the logic",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["string", "number", "boolean", "date"] },
+          "required": { "type": "boolean", "default": false },
+          "question": { "type": "string", "description": "Conversational prompt if user-facing" }
+        }
+      }
+    },
+    "logic": {
+      "type": "array",
+      "description": "Declarative condition → outcome mappings",
+      "items": {
+        "type": "object",
+        "required": ["if", "then"],
+        "properties": {
+          "if": {
+            "type": "object",
+            "description": "Condition(s) to evaluate (flat key-value or expression)"
+          },
+          "then": {
+            "type": "string",
+            "description": "Outcome returned if condition matches"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Explanation of why this condition implies the outcome"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "description": "All possible outcomes the logic can return",
+      "patternProperties": {
+        ".*": {
+          "type": "object",
+          "required": ["label", "description"],
+          "properties": {
+            "label": { "type": "string" },
+            "description": { "type": "string" }
+          }
+        }
+      }
+    },
+    "rationale": {
+      "type": "object",
+      "description": "Metadata defining how rationale should be generated, logged, or escalated",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["static", "rule-linked", "external"],
+          "default": "rule-linked"
+        },
+        "requires_justification": {
+          "type": "boolean",
+          "default": true
+        },
+        "escalate_on_ambiguity": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "description": "Audit metadata captured on every execution",
+      "properties": {
+        "signing_required": { "type": "boolean", "default": true },
+        "log_output": { "type": "boolean", "default": true },
+        "log_rationale": { "type": "boolean", "default": true },
+        "hashing_strategy": { "type": "string", "enum": ["sha256", "blake2b"], "default": "sha256" }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Optional metadata for domain, tags, and governance rules",
+      "properties": {
+        "domain": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "licensing": {
+          "type": "string",
+          "enum": ["public", "trust", "tenant", "restricted"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "submitted", "approved", "deprecated"]
+        }
+      }
+    }
+  }
+}
